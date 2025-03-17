@@ -70,7 +70,7 @@ ROOT_URLCONF = 'InnoWavz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'core', 'templates')],  # Ensure this path is correct
+        'DIRS': [os.path.join(BASE_DIR, 'InnoWavZ/templates')],  # Ensure this path is correct
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
