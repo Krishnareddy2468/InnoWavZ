@@ -1,5 +1,5 @@
 from django.shortcuts import render 
-from .models import Category, Vendor, Product , ProductImage
+from .models import category, Vendor, Product , ProductImage
 def index(request):
     return render(request, 'core/index.html')  
 def project(request):

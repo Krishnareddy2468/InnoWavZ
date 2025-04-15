@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Category, Vendor, Product, ProductImage
+from .models import category, Vendor, Product, ProductImage
 
-class ProductImagesadmin(admin.TabularInline):
+class ProductImagesAdmin(admin.TabularInline):  # Renamed to follow PascalCase
     model = ProductImage
 
 class ProductAdmin(admin.ModelAdmin):
@@ -10,22 +10,23 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'user')
     ordering = ('-id',)
     list_per_page = 6
+    inlines = [ProductImagesAdmin]  # Added inline for ProductImage
 
-class Categoryadmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):  # Renamed to follow PascalCase
     list_display = ('title', 'category_image')
     search_fields = ('title',)
     list_filter = ('title',)
     ordering = ('-id',)
     list_per_page = 6
 
-class Vendoradmin(admin.ModelAdmin):
+class VendorAdmin(admin.ModelAdmin):  # Renamed to follow PascalCase
     list_display = ('title', 'vendor_image')
     search_fields = ('title',)
     list_filter = ('title',)
     ordering = ('-id',)
     list_per_page = 6
 
-admin.site.register(Category, Categoryadmin)
-admin.site.register(Vendor, Vendoradmin)
+admin.site.register(category, CategoryAdmin)  # Updated class name
+admin.site.register(Vendor, VendorAdmin)  # Updated class name
 admin.site.register(Product, ProductAdmin)
 admin.site.site_header = "InnoWavz Admin"
