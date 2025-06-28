@@ -2,292 +2,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | InnoWavZ</title>
-    <style>
-        :root {
-            --primary: #3a56e8;
-            --primary-dark: #2a3f85;
-            --secondary: #6c757d;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #28a745;
-            --danger: #dc3545;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Jost', sans-serif;
-        }
-        
-        body {
-            min-height: 100vh;
-            background: 
-                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* Dark overlay */
-                url("{% static 'img/signinbackground.jpg' %}") center/cover no-repeat fixed;
-            background-size: 1000px auto; 
-            background-attachment: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0px;
-        }
-        
-        .auth-card {
-    width: 100%;
-    max-width: 450px;
-    background:  rgba(255, 255, 255, 0.237);; /* transparent white */
-    backdrop-filter: blur(3px);           /* subtle glassmorphism */
-    -webkit-backdrop-filter: blur(9px);   /* Safari support */
-    padding: 0;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | InnoWavZ</title>
+  <style>
+    :root {
+      --primary: #3a56e8;
+      --primary-dark: #2a3f85;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #28a745;
+      --danger: #dc3545;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
 
-        /* Header */
-        .auth-header {
-    padding: 24px;
-    background:  rgba(255, 255, 255, 0.237);; /* transparent white */
-    backdrop-filter: blur(3px);           /* subtle glassmorphism */
-    -webkit-backdrop-filter: blur(9px); 
-    color: rgba(255, 255, 255, 0.71);
-    text-align: center;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Jost', sans-serif;
+    }
 
-        .auth-header h2 {
-            color:black;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 24px;
-        }
-        
-        .auth-header p {
-            color: #6b7280;
-            font-size: 15px;
-        }
-        
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        
-        .auth-header {
-            background:  rgba(255, 255, 255, 0.237);; /* transparent white */
-    backdrop-filter: blur(3px);           /* subtle glassmorphism */
-    -webkit-backdrop-filter: blur(9px); 
-            color: black;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .auth-header h2 {
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 28px;
-        }
-        
-        .auth-header p {
-            opacity: 0.9;
-            font-weight: 400;
-        }
-        
-        .auth-body {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e3e9;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            transition: all 0.3s;
-            background-color: var(--light);
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(58, 86, 232, 0.1);
-            outline: none;
-            background-color: white;
-        }
-        
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            text-align: center;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
-        .auth-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: var(--secondary);
-        }
-        
-        .auth-footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .error-message {
-            color: var(--danger);
-            font-size: 14px;
-            margin-top: 6px;
-            display: block;
-        }
-        
-        .messages {
-            margin-bottom: 20px;
-        }
-        
-        .messages .alert {
-            padding: 12px 16px;
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
-        
-        .messages .success {
-            background-color: rgba(40, 167, 69, 0.1);
-            color: var(--success);
-            border-left: 4px solid var(--success);
-        }
-        
-        .messages .error {
-            background-color: rgba(220, 53, 69, 0.1);
-            color: var(--danger);
-            border-left: 4px solid var(--danger);
-        }
-        
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 40px;
-            cursor: pointer;
-            color: var(--secondary);
-        }
-    </style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                  url("{% static 'img/signinbackground.jpg' %}") center/cover no-repeat fixed;
+      background-size: 1000px auto;
+      background-attachment: fixed;
+      padding-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--box-shadow);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar a::before {
+      content: '←';
+      margin-right: 8px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 450px;
+      background: rgba(255, 255, 255, 0.237);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(9px);
+      padding: 0;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+
+    .auth-header {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.237);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(9px);
+      color: rgba(255, 255, 255, 0.71);
+      text-align: center;
+    }
+
+    .auth-header h2 {
+      color: black;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .auth-header p {
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    .auth-body {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e3e9;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: all 0.3s;
+      background-color: var(--light);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(58, 86, 232, 0.1);
+      outline: none;
+      background-color: white;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--secondary);
+    }
+
+    .auth-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: var(--danger);
+      font-size: 14px;
+      margin-top: 6px;
+      display: block;
+    }
+
+    .messages {
+      margin-bottom: 20px;
+    }
+
+    .messages .alert {
+      padding: 12px 16px;
+      border-radius: var(--border-radius);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .messages .success {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--success);
+      border-left: 4px solid var(--success);
+    }
+
+    .messages .error {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--danger);
+      border-left: 4px solid var(--danger);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 40px;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+  </style>
 </head>
 <body>
-    <div class="auth-card">
-        <div class="auth-header">
-            <h2>Join InnoWavZ</h2>
-            <p>Start your IoT & AI journey today</p>
-        </div>
+  <!-- Navbar with Back Button -->
+ <nav style="position: absolute; top: 20px; left: 20px; z-index: 1000;">
+        <a href="{% url 'core:home' %}" 
+           style="text-decoration: none; 
+                  background-color: #3a56e8; 
+                  color: white; 
+                  padding: 10px 18px; 
+                  border-radius: 8px; 
+                  font-weight: 600; 
+                  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+                  transition: all 0.2s ease;">
+            Back
+        </a>
+    </nav>
 
-        <div class="auth-body">
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-            <form method="POST" action="{% url 'userauths:signup' %}">
-                {% csrf_token %}
-                
-                <div class="form-group">
-                    <label class="form-label" for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
-                    {% if form.username.errors %}
-                        <span class="error-message">{{ form.username.errors.0 }}</span>
-                    {% endif %}
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
-                    {% if form.email.errors %}
-                        <span class="error-message">{{ form.email.errors.0 }}</span>
-                    {% endif %}
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="password1">Password</label>
-                    <input type="password" id="password1" name="password1" class="form-control" placeholder="Create a password" required>
-                    <i class="password-toggle" data-target="password1">👁️</i>
-                    {% if form.password1.errors %}
-                        <span class="error-message">{{ form.password1.errors.0 }}</span>
-                    {% endif %}
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="password2">Confirm Password</label>
-                    <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm your password" required>
-                    <i class="password-toggle" data-target="password2">👁️</i>
-                    {% if form.password2.errors %}
-                        <span class="error-message">{{ form.password2.errors.0 }}</span>
-                    {% endif %}
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Create Account</button>
-            </form>
-
-            <div class="auth-footer">
-                <p>Already have an account? <a href="{% url 'userauths:signin' %}">Sign In</a></p>
-            </div>
-        </div>
+  <!-- Registration Form Card -->
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Join InnoWavZ</h2>
+      <p>Start your IoT & AI journey today</p>
     </div>
 
-    <script>
-        // Password toggle functionality
-        document.querySelectorAll('.password-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const passwordInput = document.getElementById(targetId);
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    this.textContent = '🙈';
-                } else {
-                    passwordInput.type = 'password';
-                    this.textContent = '👁️';
-                }
-            });
-        });
-    </script>
+    <div class="auth-body">
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <form method="POST" action="{% url 'userauths:signup' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+          {% if form.username.errors %}
+          <span class="error-message">{{ form.username.errors.0 }}</span>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+          {% if form.email.errors %}
+          <span class="error-message">{{ form.email.errors.0 }}</span>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password1">Password</label>
+          <input type="password" id="password1" name="password1" class="form-control" placeholder="Create a password" required>
+          <i class="password-toggle" data-target="password1">👁️</i>
+          {% if form.password1.errors %}
+          <span class="error-message">{{ form.password1.errors.0 }}</span>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password2">Confirm Password</label>
+          <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm your password" required>
+          <i class="password-toggle" data-target="password2">👁️</i>
+          {% if form.password2.errors %}
+          <span class="error-message">{{ form.password2.errors.0 }}</span>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Account</button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="{% url 'userauths:signin' %}">Sign In</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    document.querySelectorAll('.password-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function () {
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        if (input.type === 'password') {
+          input.type = 'text';
+          this.textContent = '🙈';
+        } else {
+          input.type = 'password';
+          this.textContent = '👁️';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
