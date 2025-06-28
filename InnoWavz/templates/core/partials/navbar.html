@@ -1,0 +1,72 @@
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="{% url 'core:home' %}" class="navbar-brand p-0">
+                    <h1 class="m-0">InnoWavZ</h1>
+                    <h6 class="m-0">Enterprise IOT & AI Solutions Hub</h6>
+                    
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        
+                        <a href=" {%url 'core:home'%}" class="nav-item nav-link active">Home</a>
+                        <a href="{%url 'core:about'%}" class="nav-item nav-link">About</a>
+                        <a href="{%url 'core:service'%}" class="nav-item nav-link">Services</a>
+                        <a href="{%url 'core:project'%}" class="nav-item nav-link">Project</a>
+                        
+                        <!-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div> -->
+                        <a href="{%url 'core:contact'%}" class="nav-item nav-link">Contact</a>
+                
+                    </div>
+                    <!-- <a href="" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a> -->
+                </div>
+                <!-- Account Controls -->
+        <div class="d-flex align-items-center">
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" class="btn btn-light rounded-pill py-2 px-4 dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-2"></i> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                    
+                        <li><a class="dropdown-item text-danger" href="{% url 'userauths:signout' %}">Sign Out</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{% url 'userauths:signin' %}" class="btn btn-outline-primary rounded-pill py-2 px-4 me-2">Sign In</a>
+                <a href="{% url 'userauths:signup' %}" class="btn btn-primary rounded-pill py-2 px-4">Sign Up</a>
+            {% endif %}
+        </div>
+            </nav>
+        
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">Innovate. Automate. Dominate. <br> Harness the Power of IoT & AI for Smarter Enterprises</h1>
+                            <p class="text-white pb-3 animated slideInDown">Unlock real-time intelligence, optimize efficiency, and drive automation with cutting-edge IoT & AI solutions.  
+                                InnoWavZ empowers businesses with smart technologies for a connected, data-driven future.Supercharge your business with AI-driven intelligence and IoT automation.  
+                                Unlock seamless connectivity, predictive analytics, and next-gen efficiency—only with InnoWavZ.</p>
+                       
+                            <a href="{% url 'userauths:signup' %}" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Explore Solutions</a>
+                            <a href="{%url 'core:contact'%}" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Get in Touch</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->

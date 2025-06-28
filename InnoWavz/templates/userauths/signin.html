@@ -13,55 +13,84 @@
             box-sizing: border-box;
             font-family: 'Heebo', sans-serif;
         }
-        
+
+        /* Sticky Navbar Styles - Added */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar button {
+            background-color: #2a3f85;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navbar button:hover {
+            background-color: #1e2e6d;
+        }
+
         body {
             min-height: 100vh;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* Dark overlay */
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                 url("{% static 'img/signinbackground.jpg' %}") center/cover no-repeat fixed;
             background-size: 1000px auto; 
             background-attachment: fixed;
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Updated */
             align-items: center;
-            padding: 0px;
         }
-        
-        /* Auth Container */
+
         .auth-container {
             width: 100%;
             max-width: 450px;
-            background:  rgba(255, 255, 255, 0.237);; /* transparent white */
-    backdrop-filter: blur(3px);           /* subtle glassmorphism */
-    -webkit-backdrop-filter: blur(9px);   /* Safari support */
+            background: rgba(255, 255, 255, 0.237);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(9px);
             padding: 40px 30px;
             border-radius: 12px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-top: 60px; /* Adjusted to make space for sticky navbar */
         }
-        
-        /* Header */
+
+        /* ... rest of your CSS remains unchanged ... */
+
         .auth-header {
             text-align: center;
             margin-bottom: 30px;
         }
-        
+
         .auth-header h2 {
             color: #2a3f85;
             font-weight: 700;
             margin-bottom: 8px;
             font-size: 24px;
         }
-        
+
         .auth-header p {
             color: #313234;
             font-size: 15px;
         }
-        
-        /* Form Elements */
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 14px 16px;
@@ -70,82 +99,70 @@
             font-size: 15px;
             transition: all 0.3s;
         }
-        
+
         .form-control:focus {
             border-color: #2a3f85;
             box-shadow: 0 0 0 3px rgba(42, 63, 133, 0.1);
             outline: none;
         }
-        
+
         .btn-primary {
             background-color: #415db9cb;
             color: white;
             border: none;
             align-items: center;
-            
             padding: 10px 30px;
-            
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 10px;
-            
         }
 
         .btn-wrapper {
-    display: flex;
-    justify-content: center;
-}
+            display: flex;
+            justify-content: center;
+        }
 
-
-.btn-primary:hover {
-    background: rgba(70, 90, 200, 1);
-}
-
-        
-        
         .btn-primary:hover {
             background-color: #1e2e6d;
         }
-        
-        /* Links */
+
         .auth-footer {
             text-align: center;
             margin-top: 25px;
             color: black;
             font-size: 14px;
         }
-        
+
         .auth-footer a {
             color: #270bdd;
             text-decoration: none;
             font-weight: 500;
         }
-        
+
         .auth-footer a:hover {
             text-decoration: underline;
             color:#1e2e6d;
         }
-        
+
         .forgot-password {
             text-align: left;
             margin: 15px 0;
         }
-        
+
         .forgot-password a {
             color: #15176d;
             font-size: 14px;
             text-decoration: none;
         }
-        
+
         .forgot-password a:hover {
             color:#1e2e6d;
             text-decoration: underline;
         }
-        
-        /* Tagline */
+
         .tagline {
             text-align: center;
             margin-top: 30px;
@@ -156,6 +173,22 @@
     </style>
 </head>
 <body>
+
+    <!-- Sticky Navbar with Back Button - Added -->
+    <div class="navbar">
+        <a href="{% url 'core:home' %}"
+         style="text-decoration: none; 
+                  background-color: #3a56e8; 
+                  color: white; 
+                  padding: 10px 18px; 
+                  border-radius: 8px; 
+                  font-weight: 600; 
+                  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+                  transition: all 0.2s ease;">Back 
+            
+        </a>
+    </div>
+
     <div class="auth-container">
         <div class="auth-header">
             <h2>Welcome</h2>
@@ -189,7 +222,6 @@
             <div class="btn-wrapper">
                 <button type="submit" class="btn-primary">Log In</button>
             </div>
-            
         </form>
 
         <div class="auth-footer">
@@ -200,5 +232,17 @@
             Bringing Intelligence to Things
         </div>
     </div>
+
+    <!-- Back button fallback script - Added -->
+    <script>
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = '/';  // Replace '/' with your actual main page URL
+            }
+        }
+    </script>
+
 </body>
 </html>
